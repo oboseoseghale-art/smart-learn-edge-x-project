@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)file:///C:/Users/Owner/Downloads/help.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartLearn Edge X</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background:
+      radial-gradient(circle at top right, rgba(59,130,246,0.22), transparent 28%),
+      radial-gradient(circle at bottom left, rgba(168,85,247,0.18), transparent 24%),
+      linear-gradient(135deg,#0b1220,#111827 45%,#1f2937);
+    color: white;
+  }
+  .container { max-width: 1220px; margin: 0 auto; padding: 24px; }
+  .hero {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+    padding: 24px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.26);
+  }
+  .heroTop {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .hero h1 { margin: 0 0 8px; font-size: 2.6rem; letter-spacing: -0.02em; }
+  .hero p { margin: 0; color: #cbd5e1; line-height: 1.5; max-width: 760px; }
+  .heroTags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .heroTag {
+    background: linear-gradient(90deg,#2563eb,#7c3aed);
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat span { display: block; color: #94a3b8; font-size: 0.82rem; margin-bottom: 6px; }
+  .stat strong { font-size: 1.25rem; }
+  .grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+  .card {
+    background: rgba(255,255,255,0.97);
+    color: #0f172a;
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+  }
+  .sectionTitle { margin: 0 0 14px; font-size: 1.35rem; }
+  .row2, .row3 { display: grid; gap: 10px; margin-bottom: 12px; }
+  .row2 { grid-template-columns: 1fr 1fr; }
+  .row3 { grid-template-columns: 1fr 1fr 1fr; }
+  select, input, button {
+    padding: 13px 14px;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+  }
+  select, input, textarea {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+  }
+  button { cursor: pointer; font-weight: 700; color: white; background: #2563eb; }
+  button.secondary { background: #0f766e; }
+  button.alt { background: #7c3aed; }
+  button.dark { background: #111827; }
+  .questionBox {
+    background: linear-gradient(135deg,#dbeafe,#ede9fe);
+    color: #1e293b;
+    border-radius: 22px;
+    padding: 26px;
+    margin: 14px 0;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .questionMeta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    color: #475569;
+    font-size: 0.92rem;
+    margin-bottom: 12px;
+  }
+  .q { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
+  .tiny { color: #475569; line-height: 1.45; font-size: 0.95rem; }
+  .result {
+    margin-top: 12px;
+    padding: 15px;
+    border-radius: 16px;
+    font-weight: 700;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+  }
+  .good { background: #dcfce7; color: #166534; }
+  .bad { background: #fee2e2; color: #991b1b; }
+  .neutral { background: #e0f2fe; color: #075985; }
+  .progressWrap {
+    background: #e5e7eb;
+    height: 18px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  .progressBar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#22c55e,#3b82f6,#7c3aed);
+    transition: width .35s ease;
+  }
+  .badge {
+    display: inline-block;
+    background: #111827;
+    color: #f8fafc;
+    padding: 7px 11px;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    margin: 4px 6px 0 0;
+  }
+  .profileList button { width: 100%; margin-bottom: 8px; text-align: left; background: #0ea5e9; }
+  .pulse { animation: pulse .45s ease; }
+  @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+  .metricRow { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .metricBox {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 14px;
+  }
+  .metricBox span { color: #64748b; font-size: 0.82rem; display: block; margin-bottom: 6px; }
+  .metricBox strong { font-size: 1.15rem; }
+  .topicTag {
+    display: inline-block;
+    background: #e2e8f0;
+    color: #334155;
+    padding: 6px 10px;
+    border-radius: 999px;
+    margin: 4px 6px 0 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+  .leaderItem {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 8px;
+  }
+  .themeRow { display: flex; gap: 8px; flex-wrap: wrap; }
+  .themeChip {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    color: #334155;
+    font-size: .85rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .themeChip.active { background: #111827; color: white; }
+  @media (max-width: 1080px) {
+    .grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .stats, .row2, .row3, .metricRow { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div class="heroTop">
+      <div>
+        <h1>SmartLearn Edge X</h1>
+        <p>A more complete learning platform with missions, streaks, rewards, profiles, leaderboard, challenge mode, and cleaner performance tracking.</p>
+      </div>
+      <div class="heroTag">Platform Mode: Daily Grind</div>
+    </div>
+    <div class="heroTags">
+      <div class="heroTag" id="dailyGoalTag">Daily Goal: 15 / 15 XP</div>
+      <div class="heroTag" id="missionTag">Mission: 3 / 3 Correct</div>
+      <div class="heroTag" id="themeTag">Theme: Aurora Focus</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>Track</span><strong id="subjectStat">Math</strong></div>
+      <div class="stat"><span>Band</span><strong id="gradeStat">K–2</strong></div>
+      <div class="stat"><span>Difficulty</span><strong id="difficultyStat">Easy</strong></div>
+      <div class="stat"><span>Level</span><strong id="levelStat">6</strong></div>
+      <div class="stat"><span>Streak</span><strong id="streakStat">1</strong></div>
+      <div class="stat"><span>XP</span><strong id="xpStat">340</strong></div>
+      <div class="stat"><span>Rewards</span><strong id="rewardStat">3</strong></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card" id="mainCard">
+      <h2 class="sectionTitle">Challenge Board</h2>
+      <div class="row3">
+        <select id="subjectSelect">
+          <option value="math">➗ Math</option>
+          <option value="science">🔬 Science</option>
+        </select>
+        <select id="gradeSelect">
+          <option value="K-2">K–2</option>
+          <option value="3-5">3–5</option>
+          <option value="6-8" selected="">6–8</option>
+        </select>
+        <select id="difficultySelect">
+          <option value="easy">Easy</option>
+          <option value="medium" selected="">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <div class="row2">
+        <button class="secondary" onclick="nextQuestion()">Generate New Problem</button>
+        <button class="dark" onclick="toggleTimerMode()" id="timerBtn">Timer: On</button>
+      </div>
+
+      <div class="questionBox">
+        <div class="questionMeta">
+          <span id="modeLabel">Timed Challenge Mode</span>
+          <span id="timerLabel">9s left</span>
+        </div>
+        <div class="q" id="question">What is 1 + 7?</div>
+        <div id="hint" class="tiny">Add the two numbers together.</div>
+      </div>
+
+      <div class="row2">
+        <input id="answer" placeholder="Type your answer here">
+        <button onclick="checkAnswer()">Submit</button>
+      </div>
+
+      <div id="result" class="result good">✅ Correct. Nice work.</div>
+
+      <h3 style="margin:18px 0 6px;">Progress to next reward</h3>
+      <div class="progressWrap"><div id="progressBar" class="progressBar" style="width: 40%;"></div></div>
+      <p class="tiny" id="progressText">4 of 10 correct answers toward your next reward chest.</p>
+
+      <div style="margin-top:16px;">
+        <span class="topicTag">Algebra basics</span>
+        <span class="topicTag">Fractions</span>
+        <span class="topicTag">Earth science</span>
+        <span class="topicTag">Biology basics</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:18px;">
+        <h2 class="sectionTitle">Profiles</h2>
+        <div class="row2">
+          <input id="profileName" placeholder="Student name">
+          <button class="alt" onclick="saveProfile()">Save</button>
+        </div>
+        <div id="profileList" class="profileList"><button onclick="loadProfile(&#39;winifred&#39;)">winifred — Lv 2 • XP 100</button></div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px;">
+        <h2 class="sectionTitle">Performance</h2>
+        <div class="metricRow">
+          <div class="metricBox"><span>Correct</span><strong id="correctMetric">34</strong></div>
+          <div class="metricBox"><span>Accuracy</span><strong id="accuracyMetric">63%</strong></div>
+          <div class="metricBox"><span>Rewards</span><strong id="rewardMetric">3</strong></div>
+          <div class="metricBox"><span>Best Streak</span><strong id="bestStreakMetric">16</strong></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px;">
+        <h2 class="sectionTitle">Daily Missions</h2>
+        <div class="metricRow">
+          <div class="metricBox"><span>Mission 1</span><strong id="mission1">3 / 3 correct</strong></div>
+          <div class="metricBox"><span>Mission 2</span><strong id="mission2">15 / 15 XP</strong></div>
+        </div>
+        <p class="tiny" style="margin-top:10px;">Complete daily missions to unlock bonus rewards faster.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:18px;">
+        <h2 class="sectionTitle">Leaderboard</h2>
+        <div id="leaderboardBox" class="tiny"><div class="leaderItem"><span>1. winifred</span><strong>XP 100 • Lv 2</strong></div></div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px;">
+        <h2 class="sectionTitle">Badges</h2>
+        <div id="badges"><span class="badge">Starter</span><span class="badge">Daily Grinder</span><span class="badge">Streak Builder</span><span class="badge">Mission Complete</span><span class="badge">Warm Up</span><span class="badge">Level Climber</span><span class="badge">Reward Hunter</span><span class="badge">Academic Mode</span></div>
+      </div>
+
+      <div class="card" style="margin-bottom:18px;">
+        <h2 class="sectionTitle">Theme Switch</h2>
+        <div class="themeRow">
+          <div class="themeChip" onclick="setTheme(&#39;Neon Scholar&#39;, this)">Neon Scholar</div>
+          <div class="themeChip" onclick="setTheme(&#39;Midnight Lab&#39;, this)">Midnight Lab</div>
+          <div class="themeChip active" onclick="setTheme(&#39;Aurora Focus&#39;, this)">Aurora Focus</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="sectionTitle">Study Assistant</h2>
+        <p class="tiny" id="helperText">Math tip: Use counting strategies and check carefully.</p>
+        <button style="margin-top:12px;" onclick="playEncouragement()">🔊 Play Prompt</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentAnswer = '';
+let currentQuestion = '';
+let correctCount = 0;
+let totalAttempts = 0;
+let xp = 0;
+let level = 1;
+let rewards = 0;
+let streak = 0;
+let bestStreak = 0;
+let badges = ['Starter'];
+let activeProfile = null;
+let timerMode = false;
+let timeLeft = 0;
+let timerInterval = null;
+let missionCorrect = 0;
+let dailyXp = 0;
+let currentTheme = 'Neon Scholar';
+
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+const mathTips = {
+  'K-2': 'Use counting strategies and check carefully.',
+  '3-5': 'Break multi-step problems into parts.',
+  '6-8': 'Use structure, operations, and estimation to verify your answer.'
+};
+
+const scienceTips = {
+  'K-2': 'Think about simple real-world observations.',
+  '3-5': 'Use vocabulary and examples from class.',
+  '6-8': 'Think in terms of systems, evidence, and scientific terms.'
+};
+
+function playTone(freq, duration, type = 'sine', gainValue = 0.05) {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  gain.gain.value = gainValue;
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+function playEncouragement() {
+  audioCtx.resume();
+  playTone(440, 0.12, 'triangle', 0.06);
+  setTimeout(() => playTone(660, 0.16, 'triangle', 0.05), 120);
+}
+
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function random(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+function setTheme(theme, el) {
+  currentTheme = theme;
+  document.getElementById('themeTag').textContent = `Theme: ${theme}`;
+  document.querySelectorAll('.themeChip').forEach(chip => chip.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+function updateMissions() {
+  document.getElementById('mission1').textContent = `${Math.min(missionCorrect,3)} / 3 correct`;
+  document.getElementById('mission2').textContent = `${Math.min(dailyXp,15)} / 15 XP`;
+}
+
+function updateLeaderboard() {
+  const data = readProfiles();
+  const ranked = Object.entries(data)
+    .sort((a, b) => (b[1].xp || 0) - (a[1].xp || 0))
+    .slice(0, 5);
+  const box = document.getElementById('leaderboardBox');
+  if (!ranked.length) {
+    box.textContent = 'No leaderboard entries yet.';
+    return;
+  }
+  box.innerHTML = ranked.map(([name, info], i) =>
+    `<div class="leaderItem"><span>${i + 1}. ${name}</span><strong>XP ${info.xp || 0} • Lv ${info.level || 1}</strong></div>`
+  ).join('');
+}
+
+function updateStats() {
+  const subject = document.getElementById('subjectSelect').value;
+  document.getElementById('subjectStat').textContent = subject === 'math' ? 'Math' : 'Science';
+  document.getElementById('gradeStat').textContent = document.getElementById('gradeSelect').value.replace('-', '–');
+  document.getElementById('difficultyStat').textContent = cap(document.getElementById('difficultySelect').value);
+  document.getElementById('levelStat').textContent = level;
+  document.getElementById('streakStat').textContent = streak;
+  document.getElementById('xpStat').textContent = xp;
+  document.getElementById('rewardStat').textContent = rewards;
+  document.getElementById('correctMetric').textContent = correctCount;
+  document.getElementById('rewardMetric').textContent = rewards;
+  document.getElementById('bestStreakMetric').textContent = bestStreak;
+  const accuracy = totalAttempts ? Math.round((correctCount / totalAttempts) * 100) : 0;
+  document.getElementById('accuracyMetric').textContent = accuracy + '%';
+  const pct = Math.min(100, (correctCount % 10) * 10);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${correctCount % 10} of 10 correct answers toward your next reward chest.`;
+  document.getElementById('dailyGoalTag').textContent = `Daily Goal: ${Math.min(dailyXp,15)} / 15 XP`;
+  document.getElementById('missionTag').textContent = `Mission: ${Math.min(missionCorrect,3)} / 3 Correct`;
+  updateMissions();
+}
+
+function setTimerUI() {
+  document.getElementById('timerBtn').textContent = `Timer: ${timerMode ? 'On' : 'Off'}`;
+  document.getElementById('modeLabel').textContent = timerMode ? 'Timed Challenge Mode' : 'Standard Practice';
+  document.getElementById('timerLabel').textContent = timerMode ? `${timeLeft}s left` : 'No active timer';
+}
+
+function toggleTimerMode() {
+  timerMode = !timerMode;
+  clearInterval(timerInterval);
+  if (timerMode) startTimer(20);
+  else timeLeft = 0;
+  setTimerUI();
+}
+
+function startTimer(seconds) {
+  clearInterval(timerInterval);
+  timeLeft = seconds;
+  setTimerUI();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    setTimerUI();
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      streak = 0;
+      setResult('⏰ Time ran out. Generate a new problem and try again.', 'bad');
+      updateStats();
+    }
+  }, 1000);
+}
+
+function generateMathQuestion(grade, difficulty) {
+  if (grade === 'K-2') {
+    const max = difficulty === 'easy' ? 10 : difficulty === 'medium' ? 20 : 30;
+    const a = random(0, max), b = random(0, max);
+    currentAnswer = String(a + b);
+    return { q: `What is ${a} + ${b}?`, hint: 'Add the two numbers together.' };
+  }
+  if (grade === '3-5') {
+    if (difficulty === 'easy') {
+      const a = random(2, 12), b = random(2, 12);
+      currentAnswer = String(a * b);
+      return { q: `What is ${a} × ${b}?`, hint: 'Multiply carefully.' };
+    }
+    if (difficulty === 'medium') {
+      const a = random(20, 99), b = random(10, 49);
+      currentAnswer = String(a - b);
+      return { q: `What is ${a} - ${b}?`, hint: 'Subtract and double-check signs.' };
+    }
+    const a = random(1, 9), b = random(2, 9);
+    currentAnswer = (a / b).toFixed(2);
+    return { q: `What is ${a} ÷ ${b}? (2 decimals)`, hint: 'Round to the hundredths place.' };
+  }
+  if (difficulty === 'easy') {
+    const a = random(2, 12), b = random(2, 10);
+    currentAnswer = String(a * b + 5);
+    return { q: `What is (${a} × ${b}) + 5?`, hint: 'Multiply first, then add.' };
+  }
+  if (difficulty === 'medium') {
+    const a = random(2, 8), b = random(2, 8), c = random(2, 8);
+    currentAnswer = String(a * b - c);
+    return { q: `What is (${a} × ${b}) - ${c}?`, hint: 'Use order of operations.' };
+  }
+  const a = random(1, 5), b = random(2, 6), c = random(1, 5), d = random(2, 6);
+  currentAnswer = `${a * d}/${b * c}`;
+  return { q: `${a}/${b} ÷ ${c}/${d} = ?`, hint: 'Keep, change, flip.' };
+}
+
+function generateScienceQuestion(grade) {
+  const bank = {
+    'K-2': [
+      { q: 'What planet do we live on?', a: 'earth' },
+      { q: 'What do plants need to grow?', a: 'water' },
+      { q: 'What gas do we breathe?', a: 'oxygen' }
+    ],
+    '3-5': [
+      { q: 'What force pulls objects toward Earth?', a: 'gravity' },
+      { q: 'What part of a plant takes in water?', a: 'roots' },
+      { q: 'Water freezes at what temperature in Celsius?', a: '0' }
+    ],
+    '6-8': [
+      { q: 'What is the center of an atom called?', a: 'nucleus' },
+      { q: 'What organ pumps blood through the body?', a: 'heart' },
+      { q: 'What process lets plants make food?', a: 'photosynthesis' }
+    ]
+  };
+  const list = bank[grade];
+  const item = list[random(0, list.length - 1)];
+  currentAnswer = item.a;
+  return { q: item.q, hint: 'Think about the science terms you already know.' };
+}
+
+function nextQuestion() {
+  const subject = document.getElementById('subjectSelect').value;
+  const grade = document.getElementById('gradeSelect').value;
+  const difficulty = document.getElementById('difficultySelect').value;
+  const data = subject === 'math' ? generateMathQuestion(grade, difficulty) : generateScienceQuestion(grade);
+  currentQuestion = data.q;
+  document.getElementById('question').textContent = currentQuestion;
+  document.getElementById('hint').textContent = data.hint;
+  document.getElementById('answer').value = '';
+  document.getElementById('helperText').textContent = subject === 'math' ? 'Math tip: ' + mathTips[grade] : 'Science tip: ' + scienceTips[grade];
+  if (timerMode) startTimer(20);
+  updateStats();
+}
+
+function checkAnswer() {
+  audioCtx.resume();
+  const user = document.getElementById('answer').value.trim().toLowerCase();
+  if (!currentQuestion) {
+    setResult('Generate a question first.', 'neutral');
+    return;
+  }
+  totalAttempts++;
+  if (user === String(currentAnswer).toLowerCase()) {
+    correctCount++;
+    streak++;
+    missionCorrect++;
+    bestStreak = Math.max(bestStreak, streak);
+    xp += 10;
+    dailyXp += 10;
+    if (correctCount % 10 === 0) rewards++;
+    if (xp >= level * 60) level++;
+    unlockBadges();
+    celebrate();
+    playTone(520, 0.12, 'triangle', 0.06);
+    setTimeout(() => playTone(720, 0.15, 'triangle', 0.05), 100);
+    setResult('✅ Correct. Nice work.', 'good');
+    saveProgress();
+    nextQuestion();
+  } else {
+    streak = 0;
+    playTone(180, 0.18, 'sawtooth', 0.06);
+    setResult(`❌ Not quite. Correct answer: ${currentAnswer}`, 'bad');
+  }
+  updateStats();
+}
+
+function setResult(text, type) {
+  const box = document.getElementById('result');
+  box.className = 'result ' + type;
+  box.textContent = text;
+}
+
+function celebrate() {
+  const main = document.getElementById('mainCard');
+  main.classList.add('pulse');
+  setTimeout(() => main.classList.remove('pulse'), 450);
+}
+
+function unlockBadges() {
+  const newBadges = [];
+  if (correctCount >= 5 && !badges.includes('Warm Up')) newBadges.push('Warm Up');
+  if (streak >= 3 && !badges.includes('Streak Builder')) newBadges.push('Streak Builder');
+  if (level >= 3 && !badges.includes('Level Climber')) newBadges.push('Level Climber');
+  if (rewards >= 2 && !badges.includes('Reward Hunter')) newBadges.push('Reward Hunter');
+  if (correctCount >= 20 && !badges.includes('Academic Mode')) newBadges.push('Academic Mode');
+  if (missionCorrect >= 3 && !badges.includes('Mission Complete')) newBadges.push('Mission Complete');
+  if (dailyXp >= 15 && !badges.includes('Daily Grinder')) newBadges.push('Daily Grinder');
+  if (newBadges.length) {
+    badges.push(...newBadges);
+    renderBadges();
+  }
+}
+
+function renderBadges() {
+  document.getElementById('badges').innerHTML = badges.map(b => `<span class="badge">${b}</span>`).join('');
+}
+
+function saveProfile() {
+  const name = document.getElementById('profileName').value.trim();
+  if (!name) return;
+  activeProfile = name;
+  const data = readProfiles();
+  data[name] = { correctCount, totalAttempts, xp, level, rewards, streak, bestStreak, badges, missionCorrect, dailyXp, currentTheme };
+  localStorage.setItem('smartlearn_edge_profiles', JSON.stringify(data));
+  renderProfiles();
+  updateLeaderboard();
+  setResult(`👤 Saved profile for ${name}`, 'neutral');
+}
+
+function loadProfile(name) {
+  const data = readProfiles()[name];
+  if (!data) return;
+  activeProfile = name;
+  correctCount = data.correctCount || 0;
+  totalAttempts = data.totalAttempts || 0;
+  xp = data.xp || 0;
+  level = data.level || 1;
+  rewards = data.rewards || 0;
+  streak = data.streak || 0;
+  bestStreak = data.bestStreak || 0;
+  badges = data.badges || ['Starter'];
+  missionCorrect = data.missionCorrect || 0;
+  dailyXp = data.dailyXp || 0;
+  currentTheme = data.currentTheme || 'Neon Scholar';
+  document.getElementById('profileName').value = name;
+  renderBadges();
+  updateStats();
+  document.getElementById('themeTag').textContent = `Theme: ${currentTheme}`;
+  setResult(`📂 Loaded profile for ${name}`, 'neutral');
+}
+
+function saveProgress() {
+  if (!activeProfile) return;
+  const data = readProfiles();
+  data[activeProfile] = { correctCount, totalAttempts, xp, level, rewards, streak, bestStreak, badges, missionCorrect, dailyXp, currentTheme };
+  localStorage.setItem('smartlearn_edge_profiles', JSON.stringify(data));
+  renderProfiles();
+  updateLeaderboard();
+}
+
+function readProfiles() {
+  return JSON.parse(localStorage.getItem('smartlearn_edge_profiles') || '{}');
+}
+
+function renderProfiles() {
+  const list = document.getElementById('profileList');
+  const data = readProfiles();
+  const names = Object.keys(data);
+  if (!names.length) {
+    list.innerHTML = '<p class="tiny">No saved profiles yet.</p>';
+    return;
+  }
+  list.innerHTML = names.map(name => `<button onclick="loadProfile('${name.replace(/'/g, "&#39;")}')">${name} — Lv ${data[name].level || 1} • XP ${data[name].xp || 0}</button>`).join('');
+}
+
+renderBadges();
+renderProfiles();
+updateLeaderboard();
+updateStats();
+setTimerUI();
+</script>
+
+
+</body></html>
